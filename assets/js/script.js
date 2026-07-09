@@ -19,15 +19,13 @@ formulario.addEventListener("submit", async function(e){
 
     try{
 
+        const formData = new FormData();
+        formData.append("nombre", nombre);
+        formData.append("mensaje", mensaje);
+
         const respuesta = await fetch(URL,{
             method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify({
-                nombre:nombre,
-                mensaje:mensaje
-            })
+            body:formData
         });
 
         const data = await respuesta.json();
@@ -50,25 +48,23 @@ formulario.addEventListener("submit", async function(e){
 
             formulario.reset();
 
-            document.getElementById("mensajeExito").style.display="flex";
-
+            document.getElementById("mensajeExito").style.display = "flex";
         }
 
     }catch(error){
 
         console.error(error);
-
         alert("Error al conectar con el servidor.");
 
     }
 
-    boton.disabled=false;
-    boton.innerText="✅ REGISTRAR MI APOYO";
+    boton.disabled = false;
+    boton.innerText = "✅ REGISTRAR MI APOYO";
 
 });
 
 function cerrarMensaje(){
 
-    document.getElementById("mensajeExito").style.display="none";
+    document.getElementById("mensajeExito").style.display = "none";
 
 }
