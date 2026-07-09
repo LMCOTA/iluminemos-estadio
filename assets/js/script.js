@@ -21,7 +21,6 @@ formulario.addEventListener("submit", function(){
         document.getElementById("mensajeExito").style.display = "flex";
 
         boton.disabled = false;
-
         boton.innerText = "✅ REGISTRAR MI APOYO";
 
     },1000);
@@ -29,7 +28,5 @@ formulario.addEventListener("submit", function(){
 });
 
 function cerrarMensaje(){
-
-    document.getElementById("mensajeExito").style.display="none";
-
+    document.getElementById("mensajeExito").style.display = "none";
 }
