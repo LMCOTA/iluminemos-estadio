@@ -380,17 +380,21 @@
         reflectoras en el estadio del Ejido 20 de Noviembre Nuevo.
     </p>
 
-    <form class="formulario">
+    <form class="formulario"
+      action="https://script.google.com/macros/s/AKfycbzQ7hPok0iViTZK5ddHfrgwotYsmQQNc9fIyx3Gk0ybfM7n_SAUu1a1cA_WyYt9kUH2vw/exec"
+      method="POST"
+      target="iframeOculto">
 
         <input
-            type="text"
-            placeholder="👤 Escribe tu nombre completo"
-            required
-        >
+    type="text"
+    name="nombre"
+    placeholder="👤 Escribe tu nombre completo"
+    required>
 
-        <textarea
-            placeholder="💬 Si lo deseas, deja un mensaje de apoyo (opcional)"
-        ></textarea>
+<textarea
+    name="mensaje"
+    placeholder="💬 Si lo deseas, deja un mensaje de apoyo (opcional)">
+</textarea>
 
         <label class="check">
 
@@ -498,7 +502,10 @@
 
 </div>
 <script src="assets/js/script.js"></script>
-
+<iframe
+    name="iframeOculto"
+    style="display:none;">
+</iframe>
 </body>
 
 </html>

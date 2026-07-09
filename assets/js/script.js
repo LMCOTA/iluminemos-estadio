@@ -1,70 +1,35 @@
-const URL = "https://script.google.com/macros/s/AKfycbzQ7hPok0iViTZK5ddHfrgwotYsmQQNc9fIyx3Gk0ybfM7n_SAUu1a1cA_WyYt9kUH2vw/exec";
-
 const formulario = document.querySelector(".formulario");
 const contador = document.getElementById("numeroApoyos");
 
 let apoyos = Number(contador.innerText) || 0;
 
-formulario.addEventListener("submit", async function(e){
-
-    e.preventDefault();
+formulario.addEventListener("submit", function(){
 
     const boton = formulario.querySelector("button");
 
     boton.disabled = true;
     boton.innerText = "Enviando...";
 
-    const nombre = formulario.querySelector("input[type=text]").value.trim();
-    const mensaje = formulario.querySelector("textarea").value.trim();
+    setTimeout(function(){
 
-    try{
+        apoyos++;
 
-        const formData = new FormData();
-        formData.append("nombre", nombre);
-        formData.append("mensaje", mensaje);
+        contador.innerText = apoyos;
 
-        const respuesta = await fetch(URL,{
-            method:"POST",
-            body:formData
-        });
+        formulario.reset();
 
-        const data = await respuesta.json();
+        document.getElementById("mensajeExito").style.display = "flex";
 
-        if(data.resultado === "duplicado"){
+        boton.disabled = false;
 
-            alert("⚠️ Ese nombre ya registró su apoyo.");
+        boton.innerText = "✅ REGISTRAR MI APOYO";
 
-        }else{
-
-            apoyos++;
-            contador.innerText = apoyos;
-
-            const faltan = document.getElementById("faltanApoyos");
-
-            if(faltan){
-                faltan.innerText =
-                "Faltan " + (1000-apoyos) + " apoyos para alcanzar la meta.";
-            }
-
-            formulario.reset();
-
-            document.getElementById("mensajeExito").style.display = "flex";
-        }
-
-    }catch(error){
-
-        console.error(error);
-        alert("Error al conectar con el servidor.");
-
-    }
-
-    boton.disabled = false;
-    boton.innerText = "✅ REGISTRAR MI APOYO";
+    },1000);
 
 });
 
 function cerrarMensaje(){
 
-    document.getElementById("mensajeExito").style.display = "none";
+    document.getElementById("mensajeExito").style.display="none";
 
 }
